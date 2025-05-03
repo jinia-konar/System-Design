@@ -30,7 +30,7 @@ public class Board {
         return false;
     }
 
-    public boolean rowColDiagonalCompleteWithSameValue() {
+    public boolean hasWinningLine() {
         //row
         boolean rowComplete = false;
         for(int i=0;i<size;i++) {

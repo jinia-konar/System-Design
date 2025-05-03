@@ -23,7 +23,7 @@ public class Game {
     }
 
     private boolean gameOver() {
-        return board.rowColDiagonalCompleteWithSameValue();
+        return board.hasWinningLine();
     }
 
     public void playGame() {
@@ -36,12 +36,6 @@ public class Game {
             int column = Integer.parseInt(input[1]);
 
             boolean pieceAdded = board.addPiece(row, column, curPlayer.getPiece());
-            if(!board.isFreeSpace()) {
-                System.out.println("Game is a Tie");
-                players.clear();
-                continue;
-            }
-
             if (!pieceAdded) {
                 System.out.println("Not a valid row and column entered, please try again");
                 players.addFirst(curPlayer);
@@ -51,9 +45,16 @@ public class Game {
             if (gameOver()) {
                 System.out.println("Player " + curPlayer.getPlayerName() + " won the game!!");
                 players.clear();
-            } else {
-                players.addLast(curPlayer);
+                break;
             }
+
+            if(!board.isFreeSpace()) {
+                System.out.println("Game is a Tie");
+                players.clear();
+                continue;
+            }
+
+            players.addLast(curPlayer);
         }
     }
 }
