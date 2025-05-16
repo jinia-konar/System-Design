@@ -8,7 +8,7 @@ public class MyLogger {
     private final LogProcessor logProcessor;
 
     public MyLogger() {
-        logProcessor =  new InfoLogger(new DebugLogger(new ErrorLogger(null)));
+        logProcessor =  new ErrorLogger(new DebugLogger(new InfoLogger(null)));
     }
 
     public void log(LogType logType, String message) {
